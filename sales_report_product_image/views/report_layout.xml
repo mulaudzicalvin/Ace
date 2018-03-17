@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<template  id="report_footer_inherit" inherit_id="report.external_layout_footer">
+		<xpath expr="//div[@class='text-center']/ul[2]/li" position="replace">
+			<li t-if="company.vat">GSTN: <span t-field="company.company_registry"/></li>
+		</xpath>
+
+	</template>
+</odoo>

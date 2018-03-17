@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+	<template id="website_pricing_custom" inherit_id="website_quote.pricing">
+		<xpath expr="//table/thead/tr/th[1]" position="before">
+			<th>image</th>
+		</xpath>
+                <xpath expr="//table/tbody/t/t[2]/tr/td[1]" position="before">
+                        <td><span t-field="line.product_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/></td>
+                </xpath>
+                <xpath expr="//table/tbody/t/t[2]/tr/td[2]" position="replace">
+                        <td><span t-field="line.name"/><t t-if="line.product_id.prod_desc"><br/><span t-field="line.product_id.prod_desc"/></t></td>
+                </xpath>
+
+	</template>
+</odoo>

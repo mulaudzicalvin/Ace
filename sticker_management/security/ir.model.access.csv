@@ -1,0 +1,4 @@
+"id","name","model_id:id","group_id:id","perm_read","perm_write","perm_create","perm_unlink"
+access_print_operation,access_print_operation,model_print_operation,base.group_user,1,0,0,0
+cru_print_operation,cru_print_operation,model_print_operation,mrp.group_mrp_manager,1,1,1,1
+access_printed_sticker,access_printed_sticker,model_printed_sticker,base.group_user,1,1,1,0

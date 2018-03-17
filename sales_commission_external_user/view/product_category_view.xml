@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="product_category_form_view_inherit_commission" model="ir.ui.view">
+        <field name="name">product.category.form.inherit</field>
+        <field name="model">product.category</field>
+        <field name="inherit_id" ref="product.product_category_form_view"/>
+        <field name="arch" type="xml">
+            <group name="first" position="after"> 
+                <group name="Sales Commission">
+<!--                    <field name="sales_manager_commission" attrs="{'invisible': [('is_apply', '!=', True)]}"/>-->
+<!--                    <field name="sales_person_commission" attrs="{'invisible': [('is_apply', '!=', True)]}"/>-->
+                    <field name="is_apply" invisible="1"/>
+                </group>
+             </group>       
+             <group name="first" position="after"> 
+                <group name="sales_commission" string="Sales Commission Setting" attrs="{'invisible': [('is_apply', '!=', True)]}">
+                    <field name="sale_commission_percentage_ids" nolabel="1" >
+                        <tree string="sale_commission Percentage" editable="bottom" >
+                            <field name="level_id" widget="selection"/>
+                            <field name="percentage"/>
+                        </tree>
+                    </field>
+                </group>
+             </group>
+        </field>
+    </record>
+
+</odoo>

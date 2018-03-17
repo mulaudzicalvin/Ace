@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate='0'>
+		<record id="group_direct_manager" model="res.groups">
+            <field name="category_id" ref="base.module_category_human_resources"/>
+            <field name="name">Direct Manager</field>
+            <field name="implied_ids" eval="[(4, ref('hr.group_hr_user'))]"/>
+        </record>
+    </data>
+</openerp>

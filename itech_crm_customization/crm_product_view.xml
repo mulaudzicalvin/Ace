@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+
+		<record id="crm_product_line_tree_view" model="ir.ui.view">
+			<field name="name">crm.product.line.tree.view</field>
+			<field name="model">crm.product.line</field>
+			<field name="arch" type="xml">
+
+				<tree string="CRM Product List">
+					<field name="opportunity" />
+					<field name="customer_id" />
+					<field name="name" />
+					<field name="product_uom_qty" />
+					<field name="price_unit" />
+					<field name="price_subtotal" />
+				</tree>
+
+			</field>
+		</record>
+
+		<record id="crm_product_line_form_view" model="ir.ui.view">
+			<field name="name">crm.product.line.form.view</field>
+			<field name="model">crm.product.line</field>
+			<field name="arch" type="xml">
+
+				<form string="CRM Product">
+					<group>
+						<group>
+						<field name="opportunity" />
+					
+							<field name="name" readonly="1"/>
+							<field name="product_uom_qty" readonly="1"/>
+						</group>
+						<group>
+						<field name="customer_id" />
+							<field name="price_unit" readonly="1"/>
+							<field name="price_subtotal" readonly="1"/>
+						</group>
+					</group>
+				</form>
+
+			</field>
+		</record>
+
+		<record id="crm_product_line_action" model="ir.actions.act_window">
+			<field name="name">Product List</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">crm.product.line</field>
+			<field name="view_type">form</field>
+			<field name="view_mode">tree,form</field>
+			<field name="filter" eval="True" />
+		</record>
+
+		<menuitem id="crm_product_line_menu" name="product List"
+			parent="sales_team.menu_sale_report" action="crm_product_line_action"
+			sequence="4" />
+
+	</data>
+</odoo>

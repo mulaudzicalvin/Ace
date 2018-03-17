@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_timesheet_form_worklog" model="ir.ui.view">
+        <field name="name">Timesheet form</field>
+        <field name="model">account.analytic.line</field>
+        <field name="inherit_id" ref="timesheet_grid.view_timesheet_form"/>
+        <field name="arch" type="xml">
+            <!-- Show task first -->
+            <xpath expr="//field[@name='project_id']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+            <xpath expr="//field[@name='task_id']" position="before">
+                <field name="display_task" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='task_id']" position="attributes">
+                <attribute name="attrs">{'invisible':[('display_task','=',False)]}</attribute>
+                <attribute name="options">{'no_create': True}</attribute>
+                <attribute name="domain"></attribute>
+                <attribute name="context"></attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

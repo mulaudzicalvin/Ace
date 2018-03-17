@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="assets_frontend" name="website_up_down assets" inherit_id="website.assets_frontend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/website_bottom_to_top/static/src/js/website_bottom_to_top.js"></script>
+            <link rel='stylesheet' href='/website_bottom_to_top/static/src/css/website_bottom_to_top.css'/>
+        </xpath>
+    </template>
+
+    <template id="website.layout_footer_copyright" inherit_id="website.layout" name="Footer Copyright">
+        <xpath expr="//t[@t-call='web.layout']" position="inside">
+            <button class="scrollButton" id="btn_scroll_up" title="Go to top">Top</button>
+        </xpath>
+    </template>
+</odoo>

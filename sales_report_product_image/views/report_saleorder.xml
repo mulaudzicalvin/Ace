@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_saleorder_document_inherit" inherit_id="sale.report_saleorder_document">
+        <xpath expr="//table[@class='table table-condensed']/thead/tr/th[1]" position="before">
+            <t t-if="doc.print_image and doc.image_sizes in ('image', 'image_medium', 'image_small') ">
+                <th>
+                    Product Image
+                </th>
+            </t>
+        </xpath>
+        <xpath expr="//table/tbody[@class='sale_tbody']/t/t[2]/tr/td[1]" position="before">
+            <t t-if="doc.image_sizes == 'image' and doc.print_image ">
+                <td>
+                    <span t-field="l.product_id.image"
+                          t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_medium' and doc.print_image">
+                <td>
+                    <span t-field="l.product_id.image_medium"
+                          t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                </td>
+            </t>
+            <t t-if="doc.image_sizes == 'image_small' and doc.print_image ">
+                <td>
+                    <span t-field="l.product_id.image_small"
+                          t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                </td>
+            </t>
+        </xpath>
+	<xpath expr="//table/tbody[@class='sale_tbody']/t/t[2]/tr/td[1]" position="replace">
+	     <td><span t-field="l.name"/><t t-if="doc.print_desc"><br/><span t-field="l.product_id.prod_desc"/></t></td>
+	</xpath>
+	<xpath expr="//div[@class='page']/p[2]" position="replace">
+	      	<b>Terms and conditions</b><br/>
+		<b>1.Delivery-</b>Ex Stock (Subject to prior sales)<br/>
+                <b>2.Sales Tax-</b>GST Extra or as applicable<br/>
+                <b>3.Rates-</b>Ex Our Godown at COCHIN / CHENNAI (Freight to pay basis)<br/>
+		<b>4.Payment-</b>100% Advanc against Proforma Invoice. Our Bank details :-<br/>
+				    AXIS BANK LTD, RAJAJI ROAD, ERNAKULAM KOCHI(KL) KOCHI : 682035<br/>
+				    A/C NO : 915020034992532, IFS CODE : UTIB000081<br/>
+				    BENEFICIARY : ACE FINEPACK PRIVATE LIMITED<br/>
+                <b>5.Validity-</b><t t-if="doc.payment_term_id"><span t-field="doc.payment_term_id"/></t><br/>
+              	<b>6.Warranty-</b>One year for any manufacturing defects from the date of our Invoice. <br/>
+During this period we fully undertake to repair, replace parts,found to have manufacturing defect. This however doesnot cover damages caused by accident, voltage fluctuation or mishandling. Warranty donot cover replacing of parts worn out due to wear and tear of machines. <br/>
+Durning the warranty period to and fro conveyance charges of the service engineer will have to be borne by the buyer.<br/>
+We can also undertake AMC after the completion of the warranty period.<br/>
+                <b>7.Installation-</b>Installation and machine orientation would be done by our service engineer.<br/>
+		<p>We thank you for your enquiry and assure our prompt service at all time.</p><br/>
+		<br/><br/>
+		Awaiting your order.
+		<br/><br/>
+		Very Truly,
+		For Ace Finepack Private Limited,
+		<br></br>
+		<span t-field="doc.create_uid.name"/>
+	</xpath>
+    </template>
+
+</odoo>

@@ -1,0 +1,33 @@
+<odoo>
+    <data>
+
+
+
+        <record id="view_website_sale_tracker_session_tree" model="ir.ui.view">
+            <field name="name">website.sale.tracker.tree</field>
+            <field name="model">website.sale.tracker</field>
+            <field name="inherit_id" ref="website_tracking.view_website_sale_tracker_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='date']" position="after">
+                    <field name="session"/>
+                </xpath>
+            </field>
+        </record>
+
+<!--
+        <record model="ir.ui.view" id="website_sale_tracker_session_view">
+            <field name="name">website.sale.tracker.search</field>
+            <field name="model">website.sale.tracker</field>
+            <field name="inherit_id" ref="website_tracking.website_sale_tracker_view"/>
+            <field name="arch" type="xml">
+                     <xpath expr="//field[@name='date']" position="after">
+                       <field name="session" widget="selection"/>
+                     </xpath>
+                     <xpath expr="//group" position="after">
+                            <filter name="group_by_session" string="Session" context="{'group_by': 'session'}"/>
+                     </xpath>
+            </field>
+        </record>
+-->
+    </data>
+</odoo>

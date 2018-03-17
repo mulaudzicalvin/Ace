@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+		
+		
+		<record id="crm_crm_case_form_view_oppor_inherit_view" model="ir.ui.view">
+            <field name="name">crm.crm.case.form.view.oppor.inherit.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+            <field name="arch" type="xml">
+                <data>	
+                
+                <field name="planned_revenue" position="replace">
+                	 <field name="planned_revenue" readonly="1"/>
+                </field>			
+				<xpath expr="//notebook/page[@name='lead']" position="before">
+                 	    <page string="Order Line">
+							<field name="order_line" nolabel="1">
+                                <tree string="Order Line" editable="top">
+                                        <field name="name" />
+										<field name="product_uom_qty" />
+										<field name="price_unit" />
+										<field name="price_subtotal" />
+                                </tree>
+                                </field>
+								
+							<group class="oe_subtotal_footer oe_right" colspan="2" >
+                                <div class="oe_subtotal_footer_separator oe_inline o_td_label">
+                                    <label for="amount_total" />
+                                    
+                                </div>
+                                <field name="amount_total" nolabel="1" class="oe_subtotal_footer_separator" widget='monetary'/>
+                            </group>
+                        </page>
+					</xpath>
+				
+				</data>
+			</field>
+		</record>
+
+		<record id="crm_view_create_opportunity_simplified_inherit_view" model="ir.ui.view">
+            <field name="name">rm.view.create.opportunity.simplified.inherit.view</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.view_create_opportunity_simplified"/>
+            <field name="arch" type="xml">
+                <data>	
+                
+                <field name="planned_revenue" position="replace">
+                	 <field name="planned_revenue" readonly="1"/>
+                </field>			
+				</data>
+			</field>
+		</record>
+
+
+</odoo>

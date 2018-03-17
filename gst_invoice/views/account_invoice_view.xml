@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+        <record id="inherit_wk_account_invoice_form_view" model="ir.ui.view">
+            <field name="name">account.invoice.form.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.invoice_form"/>
+            <field name="arch" type="xml">
+                <page name="other_info" position="inside">
+                    <group string="GST">
+                        <group col="2">
+                            <field name="gst_status" />
+                            <field name="invoice_type" />
+                            <field name="export" attrs="{'invisible':[('invoice_type','!=','export')]}"/>
+                        </group>
+                        <group col="2">
+                            <field name="x_vat" />
+                        </group>
+                        <group col="2" attrs="{'invisible':[('export','!=','WPAY')]}">
+                            <field name="port_code"/>
+                            <field name="shipping_bill_date" />
+                            <field name="shipping_bill_number" attrs="{'required':[('export','=','WPAY')]}"/>
+                        </group>
+                    </group>
+                </page>
+				<xpath expr="//field[@name='tax_line_ids']//tree//field[@name='name']" position="before">
+					<field name="hsn_code" groups="base.group_no_one"/>
+				</xpath>
+            </field>
+        </record>
+
+        <record id="inherit_view_gst_account_invoice_filter" model="ir.ui.view">
+            <field name="name">account.invoice.select.inherit</field>
+            <field name="model">account.invoice</field>
+            <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+            <field name="arch" type="xml">
+                <field name="journal_id" position="after">
+                    <field name="x_vat" string="VAT/GSTIN" filter_domain="[('partner_id.x_gstin','ilike',self)]"/>
+                    <filter name="b2b" string="B2B" domain="[('invoice_type','=','b2b')]"/>
+                    <filter name="b2cs" string="B2CS" domain="[('invoice_type','=','b2cs')]"/>
+                    <filter name="b2cl" string="B2CL" domain="[('invoice_type','=','b2cl')]"/>
+                    <filter name="wpay" string="Export WPay" domain="[('export','=','wpay')]"/>
+                    <filter name="wopay" string="Export WoPay" domain="[('export','=','wopay')]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="GST Status" name="filter_by_gst_status" domain="[]" context="{'group_by':'gst_status'}"/>
+                    </group>
+                </field>
+            </field>
+        </record>
+
+    </data>
+</odoo>

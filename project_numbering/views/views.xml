@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+  <record id="seq_project_numbering_task" model="ir.sequence">
+      <field name="name">Project Numbering Task</field>
+      <field name="code">project_numbering.task_seq</field>
+      <field name="prefix">TSK-</field>
+      <field name="padding">6</field>
+  </record>
+
+  <record id="seq_project_numbering_issue" model="ir.sequence">
+      <field name="name">Project Numbering Issue</field>
+      <field name="code">project_numbering.issue_seq</field>
+      <field name="prefix">ISS-</field>
+      <field name="padding">6</field>
+  </record>
+
+  <record model="ir.ui.view" id="task_form_inherit">
+      <field name="name">project_numbering.task_number_form</field>
+      <field name="model">project.task</field>
+      <field name="inherit_id" ref="project.view_task_form2"/>
+      <field name="arch" type="xml">
+          <xpath expr="//div[@class='oe_title']" position="before">
+            <div class="oe_title">
+                <h2><field name="number"/></h2>
+            </div>
+          </xpath>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="issue__form_inherit">
+      <field name="name">project_numbering.issue_number_form</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.project_issue_form_view"/>
+      <field name="arch" type="xml">
+        <xpath expr="//div[@class='oe_title']" position="before">
+          <div class="oe_title">
+              <h2><field name="number"/></h2>
+          </div>
+        </xpath>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="task_kanban_inherit">
+      <field name="name">project_numbering.task_number_kanban</field>
+      <field name="model">project.task</field>
+      <field name="inherit_id" ref="project.view_task_kanban"/>
+      <field name="arch" type="xml">
+          <field name="color" position="after">
+              <field name="number"/>
+          </field>
+          <xpath expr="//div/field[@name='tag_ids']" position="after">
+            <field name="number"/>
+          </xpath>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="issue_kanban_inherit">
+      <field name="name">project_numbering.issue_number_kanban</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.project_issue_kanban_view"/>
+      <field name="arch" type="xml">
+          <field name="color" position="after">
+              <field name="number"/>
+          </field>
+          <xpath expr="//div/field[@name='tag_ids']" position="after">
+            <field name="number"/>
+          </xpath>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="task_search_inherit">
+      <field name="name">project_numbering.task_number_search</field>
+      <field name="model">project.task</field>
+      <field name="inherit_id" ref="project.view_task_search_form"/>
+      <field name="arch" type="xml">
+          <field name="name" position="before">
+                <field name="number"/>
+          </field>
+      </field>
+  </record>
+
+  <record model="ir.ui.view" id="issue__search_inherit">
+      <field name="name">project_numbering.issue_number_search</field>
+      <field name="model">project.issue</field>
+      <field name="inherit_id" ref="project_issue.view_project_issue_filter"/>
+      <field name="arch" type="xml">
+        <field name="name" position="before">
+              <field name="number"/>
+        </field>
+      </field>
+  </record>
+
+
+</odoo>

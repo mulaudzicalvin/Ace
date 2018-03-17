@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="work_log_wizard" model="ir.ui.view">
+        <field name="name">work.log.wizard</field>
+        <field name="model">hr.timesheet.work.logger</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="project_id" required="1" options="{'no_create': True}"/>
+                            <field name="display_task" invisible="1"/>
+                            <field name="task_id" attrs="{'invisible':[('display_task','=',False)]}" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="time_spent" string="Time Spent" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="display_product" invisible="1"/>
+                            <field name="product_id" attrs="{'invisible':[('display_product','=',False)], 'required':[('display_product','=',True)]}"/>
+                        </group>
+                        <field name="description" nolabel="1" widget="text"
+                               placeholder="Describe your activity"
+                               colspan="4"/>
+                    </group>
+                    <footer>
+                        <button class="btn-primary" type="object"
+                                name="submit_log_work" string="Log Work"/>
+                        <button class="btn-default" special="cancel" string="Cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+</odoo>

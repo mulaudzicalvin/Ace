@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="inherited_view_general_configuration" model="ir.ui.view">
+        <field name="name">inherited_view_general_configuration</field>
+        <field name="model">base.config.settings</field>
+        <field name="type">form</field>
+        <field name="inherit_id" ref="base_setup.view_general_configuration"/>
+
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='google']" position="before">
+                <group string="Bartender configuration" name="bartender">
+                    <field name="bartender_host" />
+                    <field name="bartender_port" />
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="edit_project" model="ir.ui.view">
+        <field name="model">project.project</field>
+        <field name="inherit_id" ref="project.edit_project"/>
+        <field name="arch" type="xml">
+            <field name="user_id" position="after">
+                <field name="default_assign_to_id"/>
+                <field name="default_reviewer_id"/>
+            </field>
+        </field>
+    </record>
+</odoo>

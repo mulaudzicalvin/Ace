@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<odoo>
+
+    <!-- Form view -->
+    <record id="project_task_issue_form_view" model="ir.ui.view">
+        <field name="name">Task Form</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <field name="stage_id" position="before">
+                <button name="convert_to_task" type="object"
+                        attrs="{'invisible': [('is_issue','!=', 'i')] }"
+                        string="Convert to Task" class="oe_highlight"/>
+            </field>
+            <xpath expr="//field[@name='sequence']" position="after">
+                <field name="is_issue" readonly="1"/>
+            </xpath>
+            <xpath expr="//page[@name='description_page']"
+                   position="after">
+                <page name="email_src" string="Email Source">
+                    <group col="4" colspan="2">
+                        <field name="author_id"/>
+                        <field name="email_from"/>
+                    </group>
+                    <field name="email_body" widget="html"/>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Action to open issue task's -->
+    <act_window id="menu_task_issue"
+                name="Issue"
+                domain="[('is_issue','=','i')]"
+                context="{'default_is_issue':'i'}"
+                res_model="project.task"
+                view_mode="kanban,tree,form,calendar,gantt,graph"/>
+
+    <!-- Menu item to open issue task -->
+    <menuitem id="project_issue"
+              name="Issue"
+              parent="project.menu_project_management"
+              sequence="100"
+              action="menu_task_issue"/>
+
+</odoo>

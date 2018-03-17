@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="res_partner_c_customer_view_tab" model="ir.ui.view">
+            <field name="name">res.partner.c_customer.view.tab</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='internal_notes']" position="after">
+                    <page name="c_customer" string="Customer Info">
+                        <group>
+                            <group>
+                                <field name="tax_id_number"/>
+                                <field name="c_pin"/>
+                                <field name="c_owner"/>
+                                <field name="c_dob"/>
+                                <field name="c_routing"/>
+                            </group>
+                            <group>
+                                <field name="c_ssn"/>
+                                <field name="c_driver_lic"/>
+                                <field name="c_bussines_start"/>
+                                <field name="c_fns"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+        <!-- Partner -->
+        <record id="view_partner_tree_c_customer" model="ir.ui.view">
+            <field name="name">res.partner.c_customer.tree</field>
+            <field name="model">res.partner</field>
+             <field name="inherit_id" ref="base.view_partner_tree" />
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='parent_id']" position="before">
+                    <field name="tax_id_number"/>
+                    <field name="c_pin"/>
+                </xpath>
+                
+                <xpath expr="//field[@name='phone']" position="after">
+                    <field name="c_owner"/>
+                    <field name="c_ssn"/>
+                    <field name="c_dob"/>
+                    <field name="c_driver_lic"/>
+                    <field name="c_bussines_start"/>
+                    <field name="c_fns"/>
+                    <field name="c_routing"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
+

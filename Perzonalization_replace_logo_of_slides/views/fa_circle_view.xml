@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<openerp>
+    <data>
+        <template id="inherit_slide_detail_view" inherit_id="website_slides.slide_detail_view">
+            <xpath expr="//i[@class='fa fa-circle-o fa-5x']" position="replace">
+                <i class="fa fa-home fa-5x" style="color: #875A7B;font-weight: bold;"></i>
+            </xpath>
+        </template>
+    </data>
+</openerp>

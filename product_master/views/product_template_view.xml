@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+	<data>
+		<record id="product_template_cust_view" model="ir.ui.view">
+			<field name="name">product.template.cust.view</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="product.product_template_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//label[@for='purchase_ok']" position='after'>
+					<field name="rental_ok"/>
+                    <label for="rental_ok"/>
+				</xpath>
+				<xpath expr="//field[@name='type']" position='after'>
+					<field name="supplier_ref"/>
+					<field name="item_type"  attrs='{"invisible":[("type","!=","product")]}'/>
+					<field name="service_type" attrs='{"invisible":[("type","!=","service")]}'/>
+				</xpath>
+				<xpath expr="//field[@name='list_price']" position='after'>
+					<field name="min_sale_price"/>
+					<field name="mini_buy_back" attrs='{"invisible":[("type", "!=", "product")]}' />
+				</xpath>
+				<xpath expr="//page[@name='sales']" position='after'>
+					<page string="Product Reference" name="prod_ref" attrs='{"invisible":["|", ("type", "!=", "product"),("item_type", "!=", "machine")]}'>
+						<group string="Product Reference">
+							<field name='consumables_ref' widget="many2many_tags" domain='[("item_type", "=", "consumables")]'/>
+							<field name='installation_ref' widget="many2many_tags" domain='[("service_type", "=", "installation")]'/>
+							<field name='assembling_ref' widget="many2many_tags" domain='[("service_type", "=", "assembly")]'/>
+							<field name='service_ref' widget="many2many_tags" domain='[("service_type", "=", "servicech")]'/>
+							<field name='amc_with_ref' widget="many2many_tags" domain='[("service_type", "=", "amcspare")]'/>
+							<field name='amc_without_ref' widget="many2many_tags" domain='[("service_type", "=", "amcnospare")]'/>
+						</group>
+					</page>
+					<page string="Spare Parts" name="spare_parts" attrs='{"invisible":["|", ("type", "!=", "product"), ("item_type", "in", ("spares", "consumables"))]}'>
+                                                <group>
+							<field name="spare_parts" domain="[('item_type', '=', 'spares')]" widget="many2many_tags"/>
+                                        	</group>
+					</page>
+                                        <page string="Machines" name="machine_parts" attrs='{"invisible":[("type", "=", "consu")]}'>
+                                                <field name="machine_type" domain="[('item_type', '=', 'machine')]" />
+                                        </page>
+				</xpath>
+				<xpath expr="//field[@name='categ_id']" position="after">
+					<field name="prod_desc" />
+				</xpath>
+			</field>
+		</record>
+		
+		<record id="product_template_cust_view_2" model="ir.ui.view">
+			<field name="name">product.template.cust.view.2</field>
+			<field name="model">product.template</field>
+			<field name="inherit_id" ref="website_sale.product_template_form_view"/>
+			<field name="arch" type="xml">
+				<xpath expr="//field[@name='alternative_product_ids']" position="attributes">
+					<attribute name="domain">['|', ("item_type", "=", item_type), ("type", "=", type)]</attribute>
+				</xpath>
+				<xpath expr="//field[@name='accessory_product_ids']" position="attributes">
+					<attribute name="domain">[("item_type", "=", "accessories")]</attribute>
+				</xpath>
+			</field>
+		</record>
+                <record id="product_product_cust" model="ir.ui.view">
+                        <field name="name">product.product.cust</field>
+                        <field name="model">product.product</field>
+                        <field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+                        <field name="arch" type="xml">
+				<xpath expr="//field[@name='lst_price']" position="attributes">
+					<attribute name="invisible">1</attribute>
+				</xpath>
+                                <xpath expr="//field[@name='standard_price']" position="before">
+                                        <field name="price"/>
+                                </xpath>
+                         </field>
+                </record>
+
+
+
+	</data>
+</odoo>

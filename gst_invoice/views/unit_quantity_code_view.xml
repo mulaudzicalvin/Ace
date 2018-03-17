@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+	<data>
+        <record id="gst_uom_tree" model="ir.ui.view">
+            <field name="name">unit.quantity.code.tree</field>
+            <field name="model">unit.quantity.code</field>
+            <field name="arch" type="xml">
+                <tree string="Unit Quantity Code" editable="bottom">
+                    <field name="name" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                    <field name="code" required="1" groups="gst_invoice.group_gst_admin,gst_invoice.group_gst_user"/>
+                </tree>
+            </field>
+        </record>
+
+		<record id="gst_uom_action" model="ir.actions.act_window">
+            <field name="name">Unit Quantity Code</field>
+            <field name="res_model">unit.quantity.code</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="gst_uom_tree"/>
+        </record>
+
+        <menuitem  id="menu_gst_configuration" name="Configuration" parent="gst_parent_menu" sequence="4"/>
+        <menuitem  id="menu_uom_code" name="Unit Quantity Code" parent="menu_gst_configuration" action="gst_uom_action" sequence="2"/>
+    </data>
+</odoo>

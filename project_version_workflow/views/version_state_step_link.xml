@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="version_state_step_link_tree" model="ir.ui.view">
+        <field name="name">version.state.step.link.tree</field>
+        <field name="model">version.state.step.link</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
+                <field name="category_id" options="{'no_create': True, 'no_open': True}"/>
+                <field name="step_id" options="{'no_create': True, 'no_open': True}"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="project_task_step_tree_view" model="ir.ui.view">
+        <field name="name">project.task.step.tree</field>
+        <field name="model">project.task.step</field>
+        <field name="inherit_id" ref="project_workflow.project_task_step_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='hidden']" position="after">
+                <field name="requires_version"/>
+            </xpath>
+        </field>
+    </record>
+
+    <act_window id="version_state_step_link_action"
+                name="Version State / Task Step Configuration"
+                groups="project.group_project_manager"
+                res_model="version.state.step.link"
+                view_mode="tree"
+                context="{}"
+                view_type="form"/>
+
+    <menuitem id="version_state_step_link_menu" name="Version State / Task Step Configuration" parent="project.menu_project_config"
+              action="version_state_step_link_action" groups="project.group_project_manager" sequence="10"/>
+
+</odoo>
