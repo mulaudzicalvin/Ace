@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sot_view_order_form" model="ir.ui.view">
+        <field name="name">sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="type_id" required="1" domain="[('object_type', '=', 'sale')]"/>
+                <field name="sub_type_id" domain="[('type_id', '=', type_id)]"/>
+            </field>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('sale_type', '=', type_id), ('sale_sub_type', '=', sub_type_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="replace">
+                <field name="product_id" attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}" context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_sub_type':parent.sub_type_id}" />
+            </xpath>
+             <xpath expr="//field[@name='order_line']/tree/field[@name='product_id']" position="replace">
+                <field name="product_id" attrs="{'readonly': ['|', ('qty_invoiced', '&gt;', 0), ('procurement_ids', '!=', [])]}" context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_sub_type':parent.sub_type_id}" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/div/field[@name='product_uom_qty']" position="replace">
+                <field context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'uom_qty_change':True, 'company_id': parent.company_id, 'sale_sub_type':parent.sub_type_id}" name="product_uom_qty" class="oe_inline"/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="replace">
+                <field name="product_uom_qty" string="Ordered Qty" context="{'partner_id':parent.partner_id, 'quantity':product_uom_qty, 'pricelist':parent.pricelist_id, 'uom':product_uom, 'company_id': parent.company_id, 'sale_sub_type':parent.sub_type_id}" />
+            </xpath>
+            <xpath expr="//field[@name='order_line']/form/group/group/field[@name='product_id']" position="after">
+                <field name="sale_sub_type" invisible='1'/>
+            </xpath>
+            <xpath expr="//field[@name='order_line']/tree/field[@name='product_uom_qty']" position="after">
+                <field name="sale_sub_type" invisible='1'/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

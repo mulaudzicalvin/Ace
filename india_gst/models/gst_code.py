@@ -90,8 +90,8 @@ class AccountInvoice(models.Model):
 
     elec_ref = fields.Char('Electronic Reference')
     gstin=fields.Char(related='partner_id.gstin',store=True)
-    invoice_type=fields.Selection([('Regular','Regular'),('SEZ supplies with payment','SEZ supplies with payment'),('SEZ supplies without payment','SEZ supplies without payment'),
-                                  ('Deemed Export','Deemed Export')],string="Invoice Type",default='Regular',required=True)
+    # invoice_type=fields.Selection([('Regular','Regular'),('SEZ supplies with payment','SEZ supplies with payment'),('SEZ supplies without payment','SEZ supplies without payment'),
+    #                               ('Deemed Export','Deemed Export')],string="Invoice Type",default='Regular',required=True)
     e_commerce_operator = fields.Many2one('res.partner','E-Commerce Operator')
     ship_bill_date = fields.Date('Shipping Bill Date')
     ship_bill_no = fields.Char('Shipping Bill No.')

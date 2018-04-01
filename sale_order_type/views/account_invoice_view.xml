@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="sot_invoice_form" model="ir.ui.view">
+        <field name="name">account.invoice.form.sot</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <field name="partner_id" position="before">
+                <field name="sale_type_id" domain="[('company_id', '=', company_id)]"/>
+                <field name="sale_sub_type_id" domain="[('type_id', '=', sale_type_id)]" />
+            </field>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="domain">[('sale_type', '=', sale_type_id), ('sale_sub_type', '=', sale_sub_type_id)]</attribute>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position='after'>
+                <field name="sale_sub_type_id"/>
+            </xpath>
+            <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="attributes">
+                <attribute name="context">{'sub_type_id':parent.sale_sub_type_id}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

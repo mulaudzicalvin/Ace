@@ -92,7 +92,7 @@
             <data>
                 <xpath expr="//field[@name='payment_term_id']" position="after">
                     <field name="elec_ref" />
-                    <field name="invoice_type"/>
+                    <!-- <field name="invoice_type"/> -->
                     <field name="flag_field" invisible="1"/>
                     <field name="export_invoice"/>
                 </xpath>
@@ -106,14 +106,19 @@
                    <field name="igst" />
                 </xpath>
 
-                <xpath expr="//page//group//field[@name='name']" position="after">
+                <!-- <xpath expr="//page//group//field[@name='name']" position="after">
                    <field name="ship_bill_no" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
                    <field name="ship_bill_date" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
                    <field name="port_code" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
-                </xpath>
+                </xpath> -->
                 <!-- <xpath expr="//field[@name='invoice_line_tax_ids']" position="attributes"> -->
                 <!--     <attribute name="invisible">True</attribute> -->
                 <!-- </xpath> -->
+                <!-- <xpath expr="//page//group//field[@name='name']" position="after">
+                   <field name="ship_bill_no" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
+                   <field name="ship_bill_date" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
+                   <field name="port_code" attrs="{'invisible':[('invoice_type', '=', 'Regular')]}"/>
+                </xpath> -->
                 <!-- <xpath expr="//field[@name='discount']" position="attributes"> -->
                 <!--     <attribute name="invisible">True</attribute> -->
                 <!-- </xpath> -->

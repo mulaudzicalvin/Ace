@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+    <record model="ir.ui.view" id="res_partner_sale_type_form_view">
+        <field name="name">res.partner.sale_type.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <page name="sales_purchases" position="inside">
+                <group colspan="2" col="2" attrs="{'invisible':[('customer', '=', False)]}">
+                    <separator string="Sales order type" colspan="2"/>
+                    <group>
+                        <field name="sale_type"/>
+                        <field name="sale_sub_type" domain="[('type_id', '=', sale_type)]"/>
+                    </group>
+                </group>
+            </page>
+            <page name="sales_purchases" position="after">
+                <page name="form_sale" string="Form Sale">
+                    <group>
+                        <group>
+                            <field name="taxes_id" widget="many2many_tags"/>
+                            <field name="tax_desc"/>
+                        </group>
+                    </group>
+                </page>
+            </page>
+        </field>
+    </record>
+</odoo>
