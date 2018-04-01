@@ -69,13 +69,13 @@ class ProductTemplates(models.Model):
 			self.service_type = None
 			self.item_type = None
 
-	@api.one
-	@api.constrains("service_type", "is_contract")
-	def onchange_service_type(self):
-		if self.service_type != "amc" and self.is_contract:
-			raise ValidationError("Contract Can Only Be Used For AMC")
-		elif self.service_type == "amc" and not self.is_contract:
-			raise ValidationError("Need Contract For AMC")
+	# @api.one
+	# @api.constrains("service_type", "is_contract")
+	# def onchange_service_type(self):
+	# 	if self.service_type != "amc" and self.is_contract:
+	# 		raise ValidationError("Contract Can Only Be Used For AMC")
+	# 	elif self.service_type == "amc" and not self.is_contract:
+	# 		raise ValidationError("Need Contract For AMC")
 
 class ProductProduct(models.Model):
 
