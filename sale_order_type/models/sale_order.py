@@ -57,7 +57,7 @@ class SaleOrder(models.Model):
 			res['sale_type_id'] = self.type_id.id
 		if self.sub_type_id:
 			res['sale_sub_type_id'] = self.sub_type_id.id
-		#_logger.info("the Value in res = "+str(res))
+		_logger.info("the Value in res = "+str(res))
 		return res
 
 class SaleOrderLine(models.Model):

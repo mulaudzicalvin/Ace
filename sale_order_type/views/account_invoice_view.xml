@@ -13,7 +13,7 @@
                 <attribute name="domain">[('sale_type', '=', sale_type_id), ('sale_sub_type', '=', sale_sub_type_id)]</attribute>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='invoice_line_tax_ids']" position='after'>
-                <field name="sale_sub_type_id"/>
+                <field name="sale_sub_type_id" invisible="1"/>
             </xpath>
             <xpath expr="//field[@name='invoice_line_ids']/tree/field[@name='product_id']" position="attributes">
                 <attribute name="context">{'sub_type_id':parent.sale_sub_type_id}</attribute>
