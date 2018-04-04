@@ -15,7 +15,7 @@ class AccountInvoice(models.Model):
     sale_type_id = fields.Many2one(
         comodel_name='sale.order.type',
         string='Sale Type', default=_get_order_type)
-    sale_sub_type_id = fields.Many2one("sale.order.sub.type", string="Sale Sub Type", required=True)
+    sale_sub_type_id = fields.Many2one("sale.order.sub.type", string="Sale Sub Type")
 
     @api.onchange('partner_id', 'company_id')
     def _onchange_partner_id(self):

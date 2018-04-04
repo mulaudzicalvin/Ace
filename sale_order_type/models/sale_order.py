@@ -57,6 +57,7 @@ class SaleOrder(models.Model):
 			res['sale_type_id'] = self.type_id.id
 		if self.sub_type_id:
 			res['sale_sub_type_id'] = self.sub_type_id.id
+		#_logger.info("the Value in res = "+str(res))
 		return res
 
 class SaleOrderLine(models.Model):
@@ -108,6 +109,13 @@ class SaleOrderLine(models.Model):
 			
 			
 	sale_sub_type = fields.Many2one("sale.order.sub.type", string="Sale Sub Type", store=True)
+
+
+	@api.multi
+	def _prepare_invoice_line(self, qty):
+		res = super(SaleOrderLine, self)._prepare_invoice_line(qty=qty)
+		res['sale_sub_type_id'] = self.sale_sub_type.id
+		return res
 
 	@api.multi
 	@api.onchange('product_id')

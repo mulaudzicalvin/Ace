@@ -11,7 +11,7 @@ class ResPartner(models.Model):
 	sale_type = fields.Many2one(
 		comodel_name='sale.order.type', string='Sale Order Type',
 		company_dependent=True)
-	sale_sub_type = fields.Many2one("sale.order.sub.type", string="Sub Type")
+	sale_sub_type = fields.Many2one("sale.order.sub.type", string="Sub Type", required=True)
 
 	taxes_id = fields.Many2many('account.tax', "form_wise_tax_in_partner", "partner_id", "taxes_id", string="Form Tax")
 	tax_desc = fields.Text(string="Form Description")
