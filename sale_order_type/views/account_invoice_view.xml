@@ -6,8 +6,8 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <field name="partner_id" position="before">
-                <field name="sale_type_id" domain="[('company_id', '=', company_id)]"/>
-                <field name="sale_sub_type_id" domain="[('type_id', '=', sale_type_id)]" />
+                <field name="sale_type_id" domain="[('company_id', '=', company_id)]" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                <field name="sale_sub_type_id" domain="[('type_id', '=', sale_type_id)]" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
             </field>
             <xpath expr="//field[@name='partner_id']" position="attributes">
                 <attribute name="domain">[('sale_type', '=', sale_type_id), ('sale_sub_type', '=', sale_sub_type_id)]</attribute>
