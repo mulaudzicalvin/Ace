@@ -22,6 +22,7 @@
         'sale_stock',
         'account',
         'sale',
+        'point_of_sale',
     ],
     "demo": [
         "demo/sale_order_demo.xml",
@@ -33,6 +34,7 @@
         "views/sale_order_type_view.xml",
         "views/account_invoice_view.xml",
         "views/res_partner_view.xml",
+        "views/point_of_sale_cust.xml",
         "data/default_type.xml",
     ],
     'installable': True,
